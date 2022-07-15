@@ -1,0 +1,128 @@
+:root {
+   --primary-color: #99aa3b;
+   --grey-color: #808080;
+   --light-grey-color: #D3D3D3;
+   --font-family: Avenir, Arial, sans-serif;
+}
+
+.select_wrapper {
+   width: 28vw;
+   position: relative;
+}
+@media screen and (max-width: 768px) {
+   .select_wrapper {
+      width: 56vw;
+   }
+}
+@media screen and (max-width: 425px) {
+   .select_wrapper {
+      width: 100%;
+   }
+}
+
+.select_button {
+   width: 100%;
+   box-sizing: border-box;
+   height: 35px;
+   padding-left: 10px;
+   padding-right: 5px;
+   background-color: white;
+   border: 1px solid var(--grey-color);
+   border-radius: 3px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.select_button:focus {
+   outline: none !important;
+   border-color: var(--primary-color);
+}
+
+.select_button_text {
+   font-family: var(--font-family);
+   font-size: 16px;
+}
+
+.select_button_icon {
+   position: relative;
+   width: 20px;
+   height: 20px;
+   cursor: pointer;
+}
+
+.select_button_icon:before, .select_button_icon:after {
+   width: 2px;
+   height: 10px;
+   background-color: black;
+   border-radius: 1px;
+   content: " ";
+   position: absolute;
+   top: 5px;
+   left: 12px;
+   transition: all 100ms ease-in-out;
+}
+   
+.select_button_icon:before {
+   transform: translate(-6px, 0) rotate(-45deg);
+}
+
+.select_button_icon:after {
+   transform: translate(0, 0) rotate(45deg);
+}
+
+.select_list_wrapper {
+   width: calc(100% - 2px);
+   max-height: 150px;
+   background-color: white;
+   border-radius: 3px;
+   overflow-x: hidden;
+   overflow-y: hidden;
+   position: absolute;
+   top: 34px;
+   left: 0;
+   z-index: -1;
+}
+
+.select_list {
+   margin: 0px;
+   padding: 0px 10px;
+   transform: translateY(-100%);
+   list-style: none;
+   transition: all 100ms ease-in-out;
+}
+
+.select_list_choice {
+   width: inherit;
+   padding: 7px 5px;
+   display: flex;
+   font-family: var(--font-family);
+   cursor: pointer;
+}
+
+.select_list_wrapper li:not(:last-child) {
+   border-bottom: 1px solid var(--light-grey-color);
+}
+
+.select_list_wrapper li:hover {
+   background-color: var(--light-grey-color);
+}
+
+.select_button--expanded ~ .select_list_wrapper {
+   border: 1px solid var(--primary-color);
+   overflow-y: scroll;
+   z-index: 1;
+}
+
+.select_button--expanded ~ .select_list_wrapper ul {
+   transform: translateY(0);
+}
+
+.select_button--expanded .select_button_icon::before {
+   transform: translate(-6px, 0) rotate(45deg);
+}
+
+.select_button--expanded .select_button_icon::after {
+   transform: translate(0, 0) rotate(-45deg);
+}
